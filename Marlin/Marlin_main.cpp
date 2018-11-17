@@ -777,6 +777,19 @@ void set_current_from_steppers_for_axis(const AxisEnum axis);
 void report_current_position();
 void report_current_position_detail();
 
+void SetUpFAN2_PIN()
+{
+    SET_OUTPUT(V5_COOLING_PIN);
+    WRITE(V5_COOLING_PIN, LOW);
+}
+
+void Fan2Scan()
+{
+  if(thermalManager.degHotend(0)>65)
+  WRITE(V5_COOLING_PIN, HIGH);
+  else WRITE(V5_COOLING_PIN, LOW);
+}
+
 #if ENABLED(DEBUG_LEVELING_FEATURE)
   void print_xyz(const char* prefix, const char* suffix, const float x, const float y, const float z) {
     serialprintPGM(prefix);
@@ -14914,7 +14927,7 @@ void idle(
   #endif
 
   lcd_update();
-
+  Fan2Scan();
   host_keepalive();
 
   manage_inactivity(
@@ -15120,6 +15133,8 @@ void setup() {
   stepper.init();           // Init stepper. This enables interrupts!
 
   servo_init();             // Initialize all servos, stow servo probe
+
+  SetUpFAN2_PIN();
 
   #if HAS_PHOTOGRAPH
     OUT_WRITE(PHOTOGRAPH_PIN, LOW);

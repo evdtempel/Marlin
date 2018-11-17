@@ -56,7 +56,7 @@
 // Servos
 //
 #ifdef IS_RAMPS_13
-  #define SERVO0_PIN        7   // RAMPS_13 // Will conflict with BTN_EN2 on LCD_I2C_VIKI
+  #define SERVO0_PIN       -1//7   // RAMPS_13 // Will conflict with BTN_EN2 on LCD_I2C_VIKI
 #else
   #define SERVO0_PIN       11
 #endif
@@ -76,7 +76,7 @@
 #define Y_MIN_PIN          14
 #define Y_MAX_PIN          15
 #define Z_MIN_PIN          18
-#define Z_MAX_PIN          19
+#define Z_MAX_PIN          -1//19
 
 //
 // Z Probe (when not Z_MIN_PIN)
@@ -267,6 +267,14 @@
   #endif
 #endif
 
+#define CONTROLLER_FAN_PIN    7
+
+#define FAN2_PIN          -1// 44
+#define V5_COOLING_PIN           44
+
+#define OUTAGETEST_PIN       79
+#define OUTAGECON_PIN        58
+
 //
 // Misc. Functions
 //
@@ -279,7 +287,7 @@
 
 // define digital pin 4 for the filament runout sensor. Use the RAMPS 1.4 digital input 4 on the servos connector
 #ifndef FIL_RUNOUT_PIN
-  #define FIL_RUNOUT_PIN    4
+  #define FIL_RUNOUT_PIN    19
 #endif
 
 #ifndef PS_ON_PIN
@@ -314,15 +322,15 @@
 //
 // Průša i3 MK2 Multiplexer Support
 //
-#ifndef E_MUX0_PIN
-  #define E_MUX0_PIN 40   // Z_CS_PIN
-#endif
-#ifndef E_MUX1_PIN
-  #define E_MUX1_PIN 42   // E0_CS_PIN
-#endif
-#ifndef E_MUX2_PIN
-  #define E_MUX2_PIN 44   // E1_CS_PIN
-#endif
+//#ifndef E_MUX0_PIN
+//  #define E_MUX0_PIN 40   // Z_CS_PIN
+//#endif
+//#ifndef E_MUX1_PIN
+//  #define E_MUX1_PIN 42   // E0_CS_PIN
+//#endif
+//#ifndef E_MUX2_PIN
+//  #define E_MUX2_PIN 44   // E1_CS_PIN
+//#endif
 
 //////////////////////////
 // LCDs and Controllers //
@@ -415,17 +423,12 @@
 
       #define BEEPER_PIN        37
 
-      #if ENABLED(CR10_STOCKDISPLAY)
-        #define BTN_EN1         17
-        #define BTN_EN2         23
-      #else
-        #define BTN_EN1         31
-        #define BTN_EN2         33
-      #endif
+      #define BTN_EN1         33
+      #define BTN_EN2         31
 
       #define BTN_ENC           35
       #define SD_DETECT_PIN     49
-      #define KILL_PIN          41
+      #define KILL_PIN          -1
 
       #if ENABLED(BQ_LCD_SMART_CONTROLLER)
         #define LCD_BACKLIGHT_PIN 39
@@ -470,7 +473,7 @@
       #define BTN_ENC           39
 
       #define SD_DETECT_PIN     -1   // Pin 49 for display sd interface, 72 for easy adapter board
-      #define KILL_PIN          31
+      #define KILL_PIN          -1//31
 
     #elif ENABLED(ELB_FULL_GRAPHIC_CONTROLLER)
 
